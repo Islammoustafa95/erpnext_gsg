@@ -35,7 +35,9 @@ app_license = "MIT"
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
 doctype_js = {
-    "Journal Entry": "public/js/journal_entry.js"
+    "Journal Entry": "public/js/journal_entry.js",
+    "Payment Entry": "public/js/payment_entry.js",
+
 }
 
 # Home Pages
@@ -102,6 +104,10 @@ doctype_js = {
 #	"ToDo": "custom_app.overrides.CustomToDo"
 # }
 
+# override_doctype_class = {
+#     "Payment Entry": "erpnext_gsg.erpnext_gsg.overrides.payment_entry.InvalidPaymentEntry",
+# }
+
 # Document Events
 # ---------------
 # Hook on document methods and events
@@ -113,6 +119,13 @@ doctype_js = {
 #		"on_trash": "method"
 #	}
 # }
+
+doc_events = {
+    "Material Request": {
+        "on_submit": "erpnext_gsg.erpnext_gsg.doc_event.material_request.create_stock_entry"
+    }
+}
+
 
 # Scheduled Tasks
 # ---------------
