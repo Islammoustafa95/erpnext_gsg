@@ -34,11 +34,10 @@ def get_hours(doc, method):
     stat_of_the_month = datetime.strptime(str(month_start), "%Y-%m-%d")
 
     month_end = current_year + "-" + current_month + "-31"
-    end_of_the_month = datetime.strptime(str(month_start), "%Y-%m-%d")
+    end_of_the_month = datetime.strptime(str(month_end), "%Y-%m-%d")
 
     list = frappe.db.get_list("Employee Excuse application",
-                              filters={"employee": doc.employee}, fields="hours")
-    # , "excuse_date": ["between", (stat_of_the_month, end_of_the_month)]
+                              filters={"employee": doc.employee, "excuse_date": ["between", (stat_of_the_month, end_of_the_month)]}, fields="hours")
 
     mylist = []
     for i in list:
@@ -48,6 +47,8 @@ def get_hours(doc, method):
     current_month_hours = 0.0
     for item in mylist:
         current_month_hours = current_month_hours + float(item)
+
+    # doc.reason = str(mylist)
 
     # //////////////////////////////////////////////////////////////////////////////////////////
 
