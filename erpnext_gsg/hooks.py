@@ -123,7 +123,15 @@ doctype_js = {
 doc_events = {
     "Material Request": {
         "on_submit": "erpnext_gsg.erpnext_gsg.doc_event.material_request.create_stock_entry"
-    }
+    },
+    "Attendance": {
+        "validate": "erpnext_gsg.erpnext_gsg.doc_event.attendance.get_working_hours"},
+
+    "Employee Excuse application": {
+        "validate": "erpnext_gsg.erpnext_gsg.doc_event.excuse_application.get_hours"},
+
+    "To Whom It Concerns": {
+        "validate": "erpnext_gsg.erpnext_gsg.doc_event.to_whom_it_concerns.get_last_salary_slip"},
 }
 
 

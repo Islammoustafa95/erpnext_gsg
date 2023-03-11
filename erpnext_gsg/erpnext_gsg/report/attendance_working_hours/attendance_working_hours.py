@@ -12,7 +12,8 @@ def execute(filters=None):
 
 
 def get_data(filters):
-    return frappe.db.get_all("Attendance", ['employee_name', 'attendance_date', 'check_in', 'check_out'],
+
+    return frappe.db.get_all("Attendance", ['employee_name', 'attendance_date', 'check_in', 'check_out', 'working_hours2'],
                              filters=filters)
 
 
@@ -23,6 +24,9 @@ def get_columns():
         {'fieldname': 'attendance_date', 'label': 'Attendance Date', 'fieldtype': 'Date'},
         {'fieldname': 'check_in', 'label': 'Check in', 'fieldtype': 'Time'},
         {'fieldname': 'check_out', 'label': 'Check out', 'fieldtype': 'Time'},
+        {'fieldname': 'working_hours2', 'label': 'Working Hours', 'fieldtype': 'Float'},
+        {'fieldname': 'view_attendance', 'label': 'View Attendance', 'fieldtype': 'HTML'}
+
     ]
 
     return columns
