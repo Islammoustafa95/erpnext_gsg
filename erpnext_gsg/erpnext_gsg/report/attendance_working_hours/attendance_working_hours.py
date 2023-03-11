@@ -12,9 +12,14 @@ def execute(filters=None):
 
 
 def get_data(filters):
-
-    return frappe.db.get_all("Attendance", ['employee_name', 'attendance_date', 'check_in', 'check_out', 'working_hours2'],
+    data = frappe.db.get_all("Attendance",
+                             ['employee_name', 'attendance_date', 'check_in', 'check_out', 'working_hours2', 'name'],
                              filters=filters)
+
+    for row in data:
+        row.view_attendance = f"<a target='_blank' onclick='window.open()' href='/app/attendance/{row.name}' " \
+                              f"title='{row.name}' data-doctype='Attendance' data-name='{row.name}'>View Attendance</a>"
+    return data
 
 
 def get_columns():
